@@ -1,0 +1,24 @@
+# Navidrome pour les tests QA
+# Démarrer : docker compose up -d
+# Arrêter  : docker compose down
+# Interface : http://localhost:4533
+
+services:
+  navidrome:
+    # Version fixe : la même que le code de navidrome-src/ (v0.64.2)
+    image: deluan/navidrome:0.64.2
+    container_name: navidrome-qa
+    ports:
+      # Accessible uniquement depuis cet ordinateur
+      - "127.0.0.1:4533:4533"
+    environment:
+      ND_LOGLEVEL: info
+      ND_SCANSCHEDULE: 1h
+      # Crée le compte "admin" au premier démarrage, avec le mot de passe défini dans .env
+      ND_DEVAUTOCREATEADMINPASSWORD: ${NAVIDROME_ADMIN_PASSWORD:?Définissez NAVIDROME_ADMIN_PASSWORD dans le fichier .env}
+    volumes:
+      # Base de données, cache et journaux (non versionnés)
+      - ./navidrome-data:/data
+      # Fichiers audio à tester (non versionnés), en lecture seule
+      - ./music:/music:ro
+    restart: unless-stopped

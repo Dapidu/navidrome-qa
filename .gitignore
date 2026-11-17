@@ -9,3 +9,10 @@ playwright-report/
 
 # Code source de Navidrome (cloné à part, version testée : v0.64.2)
 navidrome-src/
+
+# Navidrome installé pour les tests (programme, base de données, musique)
+navidrome-app/
+
+# Navidrome sous Docker : base de données et fichiers audio
+navidrome-data/
+music/
