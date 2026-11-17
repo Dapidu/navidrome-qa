@@ -6,3 +6,6 @@ allure-results/
 allure-report/
 test-results/
 playwright-report/
+
+# Code source de Navidrome (cloné à part, version testée : v0.64.2)
+navidrome-src/
